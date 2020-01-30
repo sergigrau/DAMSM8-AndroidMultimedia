@@ -1,0 +1,51 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".M17_FragmentsActivity">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".M01_AudioActivity"
+    tools:showIn="@layout/m39_fragments_main">
+
+    <FrameLayout
+        android:id="@+id/contenidorFragmentLlista"
+        android:layout_weight="1"
+        android:layout_width="0px"
+        android:layout_height="match_parent" >
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/contenidorFragmentDetall"
+        android:layout_weight="2"
+        android:layout_width="0px"
+        android:layout_height="match_parent" >
+    </FrameLayout>
+
+
+
+</LinearLayout>
+
+<com.google.android.material.appbar.AppBarLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:theme="@style/AppTheme.AppBarOverlay">
+
+</com.google.android.material.appbar.AppBarLayout>
+
+<androidx.appcompat.widget.Toolbar
+android:id="@+id/toolbar"
+android:layout_width="match_parent"
+android:layout_height="?attr/actionBarSize"
+android:background="#E91E63"
+app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+

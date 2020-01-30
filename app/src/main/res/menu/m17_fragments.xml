@@ -1,0 +1,21 @@
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    
+    <item
+        android:id="@+id/afegirLlista"
+        android:orderInCategory="100"
+        android:title="afegirLlista"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/afegirDetall"
+        app:showAsAction="ifRoom"
+        android:title="afegirDetall">
+    </item>
+     <item
+        android:id="@+id/canviarDetall"
+        app:showAsAction="ifRoom"
+        android:title="canviarDetall">
+    </item>
+
+</menu>
