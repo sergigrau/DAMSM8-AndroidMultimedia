@@ -4,9 +4,18 @@
     android:orientation="vertical"
     android:background="#bfb0b0" >
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
+    <EditText
+        android:id="@+id/textEntrada"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:tooltipText="entra un curs" />
+
+    <Button
+        android:id="@+id/botoEntrada"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="entra nom" />
 </LinearLayout>

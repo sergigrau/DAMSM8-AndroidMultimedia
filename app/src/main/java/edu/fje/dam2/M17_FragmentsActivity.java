@@ -6,14 +6,20 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
+import java.util.ArrayList;
 
 /**
  * Classe que demostra el funcionament dels m39_fragments amb Android
@@ -25,12 +31,30 @@ import androidx.appcompat.app.AppCompatActivity;
  * @version 5.0 27.01.2020
  */
 @SuppressLint("ValidFragment")
-public class M17_FragmentsActivity extends AppCompatActivity {
+public class M17_FragmentsActivity extends AppCompatActivity
+        implements M17_DetallFragmentActivity.OnNomAfegitListener {
+
+    public static ArrayList<String> CURSOS = new ArrayList<>();
+    LinearLayout ll;
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        if (fragment instanceof M17_DetallFragmentActivity) {
+            M17_DetallFragmentActivity detallFragmentActivity = (M17_DetallFragmentActivity) fragment;
+            detallFragmentActivity.setOnNomAfegitListener(this);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.m39_fragments_main);
+        setContentView(R.layout.m17_fragments);
+        ll = findViewById(R.id.elLayout);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        CURSOS.add("DAW2");
+        CURSOS.add("DAM2");
         // FragmentTransaction transaction = getFragmentManager()
         // .beginTransaction();
         // transaction.add(R.id.fragmentcontainer1, new MyListFragment());
@@ -42,6 +66,18 @@ public class M17_FragmentsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.m17_fragments, menu);
         return true;
+    }
+
+    @Override
+    public void onNomAfegit(String nom) {
+        CURSOS.add(nom);
+        Log.v("DAM", CURSOS.toString());
+        M17_LlistaFragmentActivity llistaFragmentActivity = (M17_LlistaFragmentActivity)
+                getFragmentManager().findFragmentById(R.id.contenidorFragmentLlista);
+
+        llistaFragmentActivity.afegirNom(nom);
+
+
     }
 
     public static class FragmentInterna extends Fragment {
@@ -94,8 +130,20 @@ public class M17_FragmentsActivity extends AppCompatActivity {
         super.onConfigurationChanged(novaConfiguracio);
         if (novaConfiguracio.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+
+            CoordinatorLayout.LayoutParams lp = new CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT,
+                    CoordinatorLayout.LayoutParams.WRAP_CONTENT);
+            ll.setLayoutParams(lp);
+            ll.setOrientation(LinearLayout.HORIZONTAL);
+
         } else if (novaConfiguracio.orientation == Configuration.ORIENTATION_PORTRAIT) {
+
             Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+
+            CoordinatorLayout.LayoutParams lp = new CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT,
+                CoordinatorLayout.LayoutParams.WRAP_CONTENT);
+            ll.setLayoutParams(lp);
+            ll.setOrientation(LinearLayout.VERTICAL);
         }
     }
 

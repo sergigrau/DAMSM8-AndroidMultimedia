@@ -4,14 +4,8 @@
     android:background="#00ff00"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/button"
+    <ListView
+        android:id="@+id/llista"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
-
-    <ToggleButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ToggleButton" />
+        android:layout_height="match_parent" />
 </LinearLayout>
