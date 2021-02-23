@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".M17_FragmentsActivity"
+            android:name=".M20_AnimacioSprite"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
