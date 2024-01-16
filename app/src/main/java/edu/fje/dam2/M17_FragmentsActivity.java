@@ -102,11 +102,11 @@ public class M17_FragmentsActivity extends AppCompatActivity
             transaction.commit();
             return true;
         } else if (item.getItemId() == R.id.afegirDetall) {
-            transaction.replace(R.id.contenidorFragmentLlista, new M17_DetallFragmentActivity());
+            transaction.replace(R.id.contenidorFragmentDetall, new M17_DetallFragmentActivity());
             transaction.commit();
             return true;
         } else if (item.getItemId() == R.id.canviarDetall) {
-            transaction.replace(R.id.contenidorFragmentLlista, new FragmentInterna());
+            transaction.replace(R.id.contenidorFragmentDetall, new FragmentInterna());
             transaction.commit();
             return true;
         }
