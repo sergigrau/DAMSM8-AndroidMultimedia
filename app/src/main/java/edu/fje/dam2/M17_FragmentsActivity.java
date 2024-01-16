@@ -1,4 +1,4 @@
-package edu.fje.dam2;
+package edu.fje.multimedia;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,8 +65,9 @@ public class M17_FragmentsActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.m17_fragments, menu);
-        return true;
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.m17_fragments, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -93,37 +95,22 @@ public class M17_FragmentsActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        FragmentManager manager = getFragmentManager();
-        switch (item.getItemId()) {
-            case R.id.afegirLlista:
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.add(R.id.contenidorFragmentLlista, new M17_LlistaFragmentActivity());
-                transaction
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                transaction.commit();
-                break;
-            case R.id.afegirDetall:
-                transaction = manager.beginTransaction();
-                transaction.add(R.id.contenidorFragmentDetall, new M17_DetallFragmentActivity());
-
-                transaction.commit();
-                break;
-
-            case R.id.canviarDetall:
-                Fragment f = new FragmentInterna();
-                transaction = manager.beginTransaction();
-                transaction.replace(R.id.contenidorFragmentDetall, f);
-
-                transaction.commit();
-                break;
-
-
-            default:
-                break;
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        if (item.getItemId() == R.id.afegirLlista) {
+            transaction.replace(R.id.contenidorFragmentLlista, new M17_LlistaFragmentActivity());
+            transaction.commit();
+            return true;
+        } else if (item.getItemId() == R.id.afegirDetall) {
+            transaction.replace(R.id.contenidorFragmentLlista, new M17_DetallFragmentActivity());
+            transaction.commit();
+            return true;
+        } else if (item.getItemId() == R.id.canviarDetall) {
+            transaction.replace(R.id.contenidorFragmentLlista, new FragmentInterna());
+            transaction.commit();
+            return true;
         }
-
-        return true;
-    }
+        return super.onOptionsItemSelected(item);   }
 
     @Override
     public void onConfigurationChanged(Configuration novaConfiguracio) {
@@ -141,7 +128,7 @@ public class M17_FragmentsActivity extends AppCompatActivity
             Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
 
             CoordinatorLayout.LayoutParams lp = new CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT,
-                CoordinatorLayout.LayoutParams.WRAP_CONTENT);
+                    CoordinatorLayout.LayoutParams.WRAP_CONTENT);
             ll.setLayoutParams(lp);
             ll.setOrientation(LinearLayout.VERTICAL);
         }
